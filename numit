@@ -41,12 +41,22 @@ for f in nums:
     if f > max:
         max = f
 
-print(f"sum: {sum}")
-if len(nums):
-    print(f"avg: {sum / len(nums)}")
-    print(f"sd: {math.sqrt(sd / len(nums))}")
+try:
+    avg = sum / len(nums)
+except ZeroDivisionError:
+    avg = '-'
+
+if len(nums) and avg != '-':
+    for f in nums:
+        d = avg - f
+        d *= d
+        sd += d
+    sd = math.sqrt(sd / len(nums))
 else:
-    print("avg: -")
-    print("sd: -")
+    sd = '-'
+
+print(f"sum: {sum}")
+print(f"avg: {sum / len(nums)}")
+print(f"sd : {math.sqrt(sd / len(nums))}")
 print(f"min: {min}")
 print(f"max: {max}")
