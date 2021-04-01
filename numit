@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+import math
 
 nums = []
 
@@ -31,6 +32,7 @@ sd = 0.0
 
 for f in nums:
     sum += f
+    sd += f * f
     if min == 0:
         min = f
     elif f < min:
@@ -42,7 +44,9 @@ for f in nums:
 print(f"sum: {sum}")
 if len(nums):
     print(f"avg: {sum / len(nums)}")
+    print(f"sd: {math.sqrt(sd / len(nums))}")
 else:
     print("avg: -")
+    print("sd: -")
 print(f"min: {min}")
 print(f"max: {max}")
