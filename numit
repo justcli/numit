@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+import sys
+
+nums = []
+
+for n in sys.argv[1:]:
+    try:
+        f = float(n)
+    except Exception:
+        continue
+    nums.append(f)
+
+if not nums:
+    # read from stdin
+    line = sys.stdin.readline()
+    while line:
+        try:
+            f = float(line)
+        except Exception as e:
+            print(e)
+            continue
+        nums.append(f)
+        line = sys.stdin.readline()
+
+
+sum = 0.0
+avg = 0.0
+min = 0.0
+max = 0.0
+sd = 0.0
+
+for f in nums:
+    sum += f
+    if min == 0:
+        min = f
+    elif f < min:
+        min = f
+
+    if f > max:
+        max = f
+
+print(f"sum: {sum}")
+if len(nums):
+    print(f"avg: {sum / len(nums)}")
+else:
+    print("avg: -")
+print(f"min: {min}")
+print(f"max: {max}")
