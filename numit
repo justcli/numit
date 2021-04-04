@@ -2,6 +2,14 @@
 import sys
 import math
 
+def find(n):
+    try:
+        r = sys.argv[1 + nums.index(n)]
+    except Exception:
+        return '-'
+    return r
+
+
 nums = []
 
 for n in sys.argv[1:]:
@@ -40,9 +48,15 @@ for f in nums:
 
     if f > max:
         max = f
+if sum == int(sum):
+    sum = int(sum)
+min = find(min)
+max = find(max)
 
 try:
     avg = sum / len(nums)
+    if avg == int(avg):
+        avg = int(avg)
 except ZeroDivisionError:
     avg = '-'
 
@@ -52,11 +66,14 @@ if len(nums) and avg != '-':
         d *= d
         sd += d
     sd = math.sqrt(sd / len(nums))
+    if sd == int(sd):
+        sd = int(sd)
 else:
     sd = '-'
 
+
 print(f"sum: {sum}")
 print(f"avg: {sum / len(nums)}")
-print(f"sd : {math.sqrt(sd / len(nums))}")
+print(f"sd : {sd}")
 print(f"min: {min}")
 print(f"max: {max}")
