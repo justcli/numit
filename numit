@@ -4,15 +4,23 @@ import math
 
 def find(n):
     try:
-        r = sys.argv[1 + nums.index(n)]
+        r = data[nums.index(n)]
     except Exception:
         return '-'
     return r
 
 
 nums = []
+data = sys.argv[1:]
+if not data:
+    data = []
+    d = sys.stdin.readline()
+    while d:
+        data.append(d.strip())
+        d = sys.stdin.readline()
 
-for n in sys.argv[1:]:
+
+for n in data:
     try:
         f = float(n)
     except Exception:
@@ -40,7 +48,6 @@ sd = 0.0
 
 for f in nums:
     sum += f
-    sd += f * f
     if min == 0:
         min = f
     elif f < min:
@@ -48,8 +55,6 @@ for f in nums:
 
     if f > max:
         max = f
-if sum == int(sum):
-    sum = int(sum)
 min = find(min)
 max = find(max)
 
