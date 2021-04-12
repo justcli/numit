@@ -11,12 +11,30 @@ def find(n):
 
 
 nums = []
+decimals = 10
+try:
+    decimals = sys.argv[1:2][0]
+    if (decimals.startswith('-d')
+       and decimals[2].isdigit()
+       ):
+        if len(decimals) != 3:
+            print("Decimal places must be less from 0 to 9", file=sys.stderr)
+            exit(1)
+        decimals = int(decimals[2])
+        sys.argv.pop(1)
+except IndexError:
+    pass
+
+has_float = False
+
 data = sys.argv[1:]
 if not data:
     data = []
     d = sys.stdin.readline()
     while d:
         data.append(d.strip())
+        if '.' in d:
+            has_float = True
         d = sys.stdin.readline()
 
 
@@ -26,6 +44,8 @@ for n in data:
     except Exception:
         continue
     nums.append(f)
+    if '.' in n:
+        has_float = True
 
 if not nums:
     # read from stdin
@@ -62,6 +82,8 @@ try:
     avg = sum / len(nums)
     if avg == int(avg):
         avg = int(avg)
+    else:
+        avg = round(avg, decimals)
 except ZeroDivisionError:
     avg = '-'
 
@@ -73,12 +95,15 @@ if len(nums) and avg != '-':
     sd = math.sqrt(sd / len(nums))
     if sd == int(sd):
         sd = int(sd)
+    else:
+        sd = round(sd, decimals)
 else:
     sd = '-'
 
-
+if not has_float:
+    sum = int(sum)
 print(f"sum: {sum}")
-print(f"avg: {sum / len(nums)}")
+print(f"avg: {avg}")
 print(f"sd : {sd}")
 print(f"min: {min}")
 print(f"max: {max}")
