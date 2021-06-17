@@ -14,9 +14,7 @@ nums = []
 decimals = 10
 try:
     decimals = sys.argv[1:2][0]
-    if (decimals.startswith('-d')
-       and decimals[2].isdigit()
-       ):
+    if decimals.startswith('-d') and decimals[2].isdigit():
         if len(decimals) != 3:
             print("Decimal places must be less from 0 to 9", file=sys.stderr)
             exit(1)
@@ -31,8 +29,10 @@ data = sys.argv[1:]
 if not data:
     data = []
     d = sys.stdin.readline()
-    while d:
-        data.append(d.strip())
+    while d.strip():
+        d = d.split(' ')
+        d = list(filter(lambda x:x, d))
+        data.extend(d)
         if '.' in d:
             has_float = True
         d = sys.stdin.readline()
