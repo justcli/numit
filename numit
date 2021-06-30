@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import math
+import statistics
 
 def find(n):
     try:
@@ -88,22 +89,14 @@ except ZeroDivisionError:
     avg = '-'
 
 if len(nums) and avg != '-':
-    for f in nums:
-        d = avg - f
-        d *= d
-        sd += d
-    sd = math.sqrt(sd / len(nums))
-    if sd == int(sd):
-        sd = int(sd)
-    else:
-        sd = round(sd, decimals)
+    stdev = statistics.stdev(nums)
 else:
-    sd = '-'
+    stdev = '-'
 
 if not has_float:
     sum = int(sum)
-print(f"sum: {sum}")
-print(f"avg: {avg}")
-print(f"sd : {sd}")
-print(f"min: {min}")
-print(f"max: {max}")
+print(f"sum  : {sum}")
+print(f"avg  : {avg}")
+print(f"stdev: {stdev}")
+print(f"min  : {min}")
+print(f"max  : {max}")
